@@ -6,10 +6,19 @@ const app = express();
 app.get('/' , (req,res)=> {
     res.send('Hello World');
 })
+app.get('/about_us', (req,res) => {
+    res.send("about us page")
+})
+
+app.post('/add', (req,res) => {
+    res.send("post request")
+})
+
 
 app.listen(3000, () => {
-    console.log("listening to 300")
+    console.log("listening rt")
 })
+
 
 
 
