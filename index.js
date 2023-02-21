@@ -1,9 +1,21 @@
 const express = require('express');
 
 const app = express();
+const mongoose = require('mongoose');
+
+mongoose.set('strictQuery' , true);
+mongoose.connect('mongodb://0.0.0.0:27017/test', {
+    useNewUrlParser : true,
+    useUnifiedTopology : true
+});
+
+const con = mongoose.connection;
+con.on('open', () =>{
+    console.log('server started');
+})
 //app.listen()
 
-app.get('/' , (req,res)=> {
+/* app.get('/' , (req,res)=> {
     res.send('Hello World');
 })
 app.get('/about_us', (req,res) => {
@@ -12,14 +24,13 @@ app.get('/about_us', (req,res) => {
 
 app.post('/add', (req,res) => {
     res.send("post request")
-})
+}) */
 
 
 app.listen(3000, () => {
-    console.log("listening rt")
+    console.log("listening rt");
+
 })
-
-
 
 
 /* const fs = require('fs');
