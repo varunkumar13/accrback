@@ -10,7 +10,7 @@ router.post('/',async (req ,res) => {
             email:email,
 
         })
-        await addData.save();
+        const data = await addData.save();
         res.send(data);
     }catch (error){
         res.send(error);
