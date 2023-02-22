@@ -3,6 +3,10 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+require('./routes')(app);
+
 mongoose.set('strictQuery' , true);
 mongoose.connect('mongodb://0.0.0.0:27017/test', {
     useNewUrlParser : true,
@@ -26,9 +30,9 @@ app.post('/add', (req,res) => {
     res.send("post request")
 }) */
 
-
+  
 app.listen(3000, () => {
-    console.log("listening rt");
+    console.log("listening port");
 
 })
 
