@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const model= require('../modules/studentModel');
+const {uploads} = require('../midddleware/multer');
 
-router.post('/',async (req ,res) => {
+router.post('/', uploads.single('image'),async (req ,res) => {
     try{
         const { name,email}=req.body;
 
@@ -19,11 +20,16 @@ router.post('/',async (req ,res) => {
             return res.send("email is already existt");
         }
 
+    if(!req.file){
+        return res.status(201).send('file is already saved')
+    }
         const addData =new model({
             name :name,
             email:email,
+            image : req.file.path
 
         })
+        console.log(req.file);
         const data = await addData.save();
         res.send(data);
     }catch (error){
