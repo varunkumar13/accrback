@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const model= require('../modules/studentModel');
+const model= require('../models/studentModel');
 const {uploads} = require('../midddleware/multer');
 
 router.post('/', uploads.single('image'),async (req ,res) => {
